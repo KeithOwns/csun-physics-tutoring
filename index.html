@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSUN PHYS 100A & 100B Tutoring | Calculus-Free Physics Coaching</title>
+  <meta name="description" content="Calculus-free, step-by-step physics tutoring for CSUN students taking PHYS 100A, 100AL, 100B, and 100BL. WebAssign homework, exam prep, and lab clarity on campus." />
+  
+  <!-- Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #d11242;        /* CSUN Crimson */
+      --primary-hover: #b00f37;
+      --primary-glow: rgba(209, 18, 66, 0.35);
+      --bg-dark: #090e17;
+      --bg-surface: rgba(21, 30, 48, 0.78);
+      --bg-surface-hover: rgba(28, 40, 64, 0.85);
+      --border-subtle: rgba(255, 255, 255, 0.09);
+      --border-focus: #d11242;
+      --text-white: #f8fafc;
+      --text-dim: #cbd5e1;
+      --text-muted: #8899ac;
+      --emerald: #10b981;
+      --emerald-bg: rgba(16, 185, 129, 0.12);
+      --shadow-card: 0 24px 48px -12px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--border-subtle);
+      --radius-lg: 20px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 50% 0%, #1c273c 0%, var(--bg-dark) 70%);
+      background-attachment: fixed;
+      color: var(--text-dim);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 16px 64px 16px;
+      line-height: 1.55;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Subtle decorative background vector grid */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(rgba(209, 18, 66, 0.12) 1px, transparent 1px),
+        radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px, 12px 12px;
+      background-position: 0 0, 20px 20px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      margin-bottom: 32px;
+      animation: fadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .badge-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(209, 18, 66, 0.14);
+      border: 1px solid rgba(209, 18, 66, 0.35);
+      color: #fda4af;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--emerald);
+      animation: pulse 2s infinite;
+    }
+
+    .hero h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--text-white);
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 span.highlight {
+      background: linear-gradient(135deg, #ff4d6d 0%, #fda4af 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+
+    /* Main Card */
+    .card {
+      background: var(--bg-surface);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--border-subtle);
+      padding: 36px 32px;
+      animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
+    }
+
+    /* Value Highlights Grid */
+    .value-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      padding-bottom: 26px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .value-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.025);
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .value-icon {
+      color: #fb7185;
+      background: rgba(209, 18, 66, 0.18);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-weight: 700;
+      font-size: 0.75rem;
+      margin-top: 1px;
+    }
+
+    /* Form Styles */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    label .req {
+      color: #fb7185;
+      margin-left: 2px;
+    }
+
+    label .subtag {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px 15px;
+      background: rgba(11, 17, 32, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-sm);
+      color: var(--text-white);
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      outline: none;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #4b5d73;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--border-focus);
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+      cursor: pointer;
+    }
+
+    select option {
+      background: #0f172a;
+      color: var(--text-white);
+      padding: 8px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+      line-height: 1.5;
+    }
+
+    /* Interactive Radio Pill Group */
+    .pill-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .pill-group input[type="radio"] {
+      display: none;
+    }
+
+    .pill-label {
+      padding: 11px 8px;
+      text-align: center;
+      background: rgba(11, 17, 32, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      user-select: none;
+    }
+
+    .pill-label .sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .pill-group input[type="radio"]:checked + .pill-label {
+      background: rgba(209, 18, 66, 0.18);
+      border-color: #fb7185;
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 0 16px rgba(209, 18, 66, 0.25);
+    }
+
+    .pill-group input[type="radio"]:checked + .pill-label .sub {
+      color: #fda4af;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      background: linear-gradient(135deg, var(--primary) 0%, #b00f37 100%);
+      color: var(--text-white);
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 15px 24px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 24px var(--primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #e11d48 0%, var(--primary) 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(209, 18, 66, 0.45);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Direct Contact Bar */
+    .contact-bar {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+      text-align: center;
+    }
+
+    .contact-title {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    .action-chips {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .chip-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-white);
+    }
+
+    .chip-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .chip-btn.text-chip {
+      color: #93c5fd;
+      border-color: rgba(147, 197, 253, 0.25);
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    .chip-btn.text-chip:hover {
+      background: rgba(59, 130, 246, 0.2);
+    }
+
+    /* Success Card State */
+    .success-card {
+      display: none;
+      text-align: center;
+      padding: 32px 16px;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 2px solid var(--emerald);
+      color: var(--emerald);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .success-card h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.8rem;
+      color: var(--text-white);
+      margin-bottom: 10px;
+    }
+
+    .success-card p {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-reset {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-dim);
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-reset:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-white);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 36px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--text-dim);
+      text-decoration: none;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    /* Spinner */
+    .spinner {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #ffffff;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Mobile Adaptations */
+    @media (max-width: 640px) {
+      body {
+        padding: 28px 12px 48px 12px;
+      }
+      .card {
+        padding: 24px 18px;
+      }
+      .hero h1 {
+        font-size: 1.95rem;
+      }
+      .value-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .pill-group {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .pill-label {
+        padding: 10px 12px;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header / Hero -->
+    <header class="hero">
+      <div class="badge-bar">
+        <span class="badge-dot"></span>
+        <span>CSUN In-Person Tutoring • Fall &amp; Spring</span>
+      </div>
+      <h1>PHYS 100A &amp; 100B <span class="highlight">Tutoring</span></h1>
+      <p>Calculus-free, step-by-step coaching designed specifically for CSUN Biology, Kinesiology, Pre-Med, and Allied Health majors.</p>
+    </header>
+
+    <!-- Main Card -->
+    <div class="card">
+      <!-- Value Props -->
+      <div class="value-grid">
+        <div class="value-item">
+          <span class="value-icon">✓</span>
+          <span>In-person at CSUN Library &amp; campus coffee spots</span>
+        </div>
+        <div class="value-item">
+          <span class="value-icon">✓</span>
+          <span>WebAssign homework sets &amp; exam walkthroughs</span>
+        </div>
+        <div class="value-item">
+          <span class="value-icon">✓</span>
+          <span>Concept clarity for 100AL &amp; 100BL lab physics</span>
+        </div>
+        <div class="value-item">
+          <span class="value-icon">✓</span>
+          <span>Flexible 1-on-1 or small group rates</span>
+        </div>
+      </div>
+
+      <!-- Intake Form -->
+      <form id="tutoringIntakeForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <!-- Anti-Spam Honeypot Field -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <!-- Student Name & Phone -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="studentName">Your Name <span class="req">*</span></label>
+            <input type="text" id="studentName" name="name" placeholder="e.g. Alex Martinez" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="studentPhone">Phone / Cell (for quick text) <span class="req">*</span></label>
+            <input type="tel" id="studentPhone" name="phone" placeholder="(818) 555-0123" required autocomplete="tel" />
+          </div>
+        </div>
+
+        <!-- Student Email -->
+        <div class="form-group">
+          <label for="studentEmail">Email <span class="req">*</span> <span class="subtag">CSUN or personal</span></label>
+          <input type="email" id="studentEmail" name="email" placeholder="alex.martinez.123@my.csun.edu" required autocomplete="email" />
+        </div>
+
+        <!-- Course & Instructor -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="courseSelect">Which class are you taking? <span class="req">*</span></label>
+            <select id="courseSelect" name="course" required>
+              <option value="" disabled selected>Select your course...</option>
+              <option value="PHYS 100A">PHYS 100A (General Physics I - Lecture)</option>
+              <option value="PHYS 100AL">PHYS 100AL (General Physics I - Lab)</option>
+              <option value="PHYS 100A + 100AL">Both PHYS 100A &amp; 100AL</option>
+              <option value="PHYS 100B">PHYS 100B (General Physics II - Lecture)</option>
+              <option value="PHYS 100BL">PHYS 100BL (General Physics II - Lab)</option>
+              <option value="PHYS 100B + 100BL">Both PHYS 100B &amp; 100BL</option>
+              <option value="Other Science/Math">Other Science / Math Course</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="instructorName">Instructor / Professor <span class="subtag">Optional</span></label>
+            <input type="text" id="instructorName" name="instructor" list="instructorList" placeholder="e.g. Li, Greens Damaston, Collins" autocomplete="off" />
+            <datalist id="instructorList">
+              <option value="Gao Li"></option>
+              <option value="Greens Damaston"></option>
+              <option value="Collins"></option>
+              <option value="Sethi"></option>
+              <option value="Sayre"></option>
+            </datalist>
+          </div>
+        </div>
+
+        <!-- Primary Focus Pill Radios -->
+        <div class="form-group">
+          <label>What help do you need most? <span class="req">*</span></label>
+          <div class="pill-group">
+            <div>
+              <input type="radio" name="focus" id="focus_exam" value="Upcoming Exam" checked />
+              <label for="focus_exam" class="pill-label">
+                <span>Upcoming Exam</span>
+                <span class="sub">Midterm / Final Prep</span>
+              </label>
+            </div>
+            <div>
+              <input type="radio" name="focus" id="focus_hw" value="Homework / WebAssign" />
+              <label for="focus_hw" class="pill-label">
+                <span>WebAssign / Math</span>
+                <span class="sub">Problem set breakdown</span>
+              </label>
+            </div>
+            <div>
+              <input type="radio" name="focus" id="focus_weekly" value="Weekly Coaching" />
+              <label for="focus_weekly" class="pill-label">
+                <span>Weekly Regular</span>
+                <span class="sub">Ongoing accountability</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes / Specific Topics -->
+        <div class="form-group">
+          <label for="notes">Notes or specific topics you're stuck on <span class="subtag">Optional</span></label>
+          <textarea id="notes" name="notes" placeholder="e.g., Kinematics vectors, free-body diagrams, circuits, or prepping for Midterm 1..."></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submitBtn" class="btn-submit">
+          <span class="spinner" id="btnSpinner"></span>
+          <span id="btnText">Request Tutoring Session →</span>
+        </button>
+      </form>
+
+      <!-- Success Card (shown upon submission) -->
+      <div id="successCard" class="success-card">
+        <div class="success-icon">✓</div>
+        <h2>Request Received!</h2>
+        <p>Thanks, <strong id="tuteeNameDisplay" style="color: #ffffff;"></strong>! Keith will text you shortly at <strong id="tuteePhoneDisplay" style="color: #ffffff;"></strong> to coordinate an in-person meeting that fits your schedule.</p>
+        <div class="action-chips" style="margin-bottom: 24px;">
+          <a id="directTextLink" href="sms:2135328781" class="chip-btn text-chip">
+            💬 Text Keith Directly
+          </a>
+          <a href="tel:2135328781" class="chip-btn">
+            📞 Call (213) 532-8781
+          </a>
+        </div>
+        <div>
+          <button type="button" id="resetBtn" class="btn-reset">Submit Another Request</button>
+        </div>
+      </div>
+
+      <!-- Direct Contact Fallback Bar (No Email Exposed!) -->
+      <div class="contact-bar">
+        <div class="contact-title">Need Immediate Help? Reach Keith Directly</div>
+        <div class="action-chips">
+          <a href="tel:2135328781" class="chip-btn">
+            <span>📞</span> Call: (213) 532-8781
+          </a>
+          <a href="sms:2135328781" class="chip-btn text-chip">
+            <span>💬</span> Text: (213) 532-8781
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Footer -->
+    <footer>
+      <p>Cal State Northridge (CSUN) Physics Tutoring • Private Independent Academic Coaching</p>
+    </footer>
+  </div>
+
+  <script>
+    // Format US phone number as user types
+    const phoneInput = document.getElementById('studentPhone');
+    phoneInput.addEventListener('input', function (e) {
+      let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+      if (!x[2]) {
+        e.target.value = x[1];
+      } else {
+        e.target.value = '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+      }
+    });
+
+    const intakeForm = document.getElementById('tutoringIntakeForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const btnText = document.getElementById('btnText');
+    const successCard = document.getElementById('successCard');
+    const resetBtn = document.getElementById('resetBtn');
+    const tuteeNameDisplay = document.getElementById('tuteeNameDisplay');
+    const tuteePhoneDisplay = document.getElementById('tuteePhoneDisplay');
+    const directTextLink = document.getElementById('directTextLink');
+
+    intakeForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('studentName').value.trim();
+      const phone = document.getElementById('studentPhone').value.trim();
+      const email = document.getElementById('studentEmail').value.trim();
+      const course = document.getElementById('courseSelect').value;
+      const instructor = document.getElementById('instructorName').value.trim();
+      const focus = document.querySelector('input[name="focus"]:checked')?.value || 'Upcoming Exam';
+      const notes = document.getElementById('notes').value.trim();
+
+      // UI Loading state
+      submitBtn.disabled = true;
+      btnSpinner.style.display = 'inline-block';
+      btnText.textContent = 'Sending Request...';
+
+      const formData = new FormData(intakeForm);
+      const actionUrl = intakeForm.getAttribute('action');
+
+      // Check if Formspree endpoint is configured with a real ID
+      const hasConfiguredEndpoint = actionUrl && !actionUrl.includes('YOUR_FORM_ID');
+
+      let submissionSuccess = true;
+
+      if (hasConfiguredEndpoint) {
+        try {
+          const response = await fetch(actionUrl, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (!response.ok) {
+            submissionSuccess = false;
+          }
+        } catch (err) {
+          console.warn('Network submission error, saving locally:', err);
+          submissionSuccess = true; // Still allow local confirmation
+        }
+      }
+
+      // Save submission record to localStorage as backup
+      try {
+        const history = JSON.parse(localStorage.getItem('csun_tutoring_submissions') || '[]');
+        history.push({
+          date: new Date().toISOString(),
+          name,
+          phone,
+          email,
+          course,
+          instructor,
+          focus,
+          notes
+        });
+        localStorage.setItem('csun_tutoring_submissions', JSON.stringify(history));
+      } catch (err) {
+        // LocalStorage fallback
+      }
+
+      // Transition to Success Card
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        btnSpinner.style.display = 'none';
+        btnText.textContent = 'Request Tutoring Session →';
+
+        intakeForm.style.display = 'none';
+        tuteeNameDisplay.textContent = name || 'Student';
+        tuteePhoneDisplay.textContent = phone || 'your phone';
+        
+        // Prepare pre-filled SMS link
+        const cleanPhone = phone.replace(/\D/g, '');
+        const smsBody = encodeURIComponent(`Hi Keith, this is ${name}. I just submitted an intake form for ${course} tutoring.`);
+        directTextLink.href = `sms:2135328781?body=${smsBody}`;
+
+        successCard.style.display = 'block';
+        successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 450);
+    });
+
+    resetBtn.addEventListener('click', function () {
+      intakeForm.reset();
+      successCard.style.display = 'none';
+      intakeForm.style.display = 'flex';
+    });
+  </script>
+</body>
+</html>

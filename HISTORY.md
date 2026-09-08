@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Created responsive CSUN Physics Tutoring landing page (`index.html`) with student intake form, instructor suggestions, focus radio toggles, and direct call/text fallbacks.
 - Added printable 8.5" x 11" flyer template (`flyer.html`) with tear-off tabs and dynamic QR code linking to GitHub Pages.
+- Added compiled 8.5" x 11" print-ready PDF flyer (`CSUN_PHYS_100_Tutoring_Flyer_Keith-v3.pdf`).
 - Added client-side phone number formatting, form validation, anti-spam honeypot, and local storage submission backup.
 
 ### Changed

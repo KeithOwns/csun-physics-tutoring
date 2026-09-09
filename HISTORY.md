@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added client-side phone number formatting, form validation, anti-spam honeypot, and local storage submission backup.
 
 ### Changed
+- Restored original clean white-card landing page design with high contrast, legible typography, and streamlined layout.
 - Migrated student intake channel from printed personal email to web form.
 - Updated flyer collateral (`flyer.html` and `CSUN_PHYS_100_Tutoring_Flyer_Keith-v3.pdf`) to feature `JarHeadTutor.com` in contact banner, QR code, and tear-off tabs.
 

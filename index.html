@@ -3,33 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CSUN PHYS 100A & 100B Tutoring | Calculus-Free Physics Coaching</title>
+  <title>CSUN PHYS 100A &amp; 100B Tutoring | Calculus-Free Physics Coaching</title>
   <meta name="description" content="Calculus-free, step-by-step physics tutoring for CSUN students taking PHYS 100A, 100AL, 100B, and 100BL. WebAssign homework, exam prep, and lab clarity on campus." />
   
   <!-- Modern Typography -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet" />
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --primary: #d11242;        /* CSUN Crimson */
+      --primary: #d11242; /* CSUN crimson accent */
       --primary-hover: #b00f37;
-      --primary-glow: rgba(209, 18, 66, 0.35);
-      --bg-dark: #090e17;
-      --bg-surface: rgba(21, 30, 48, 0.78);
-      --bg-surface-hover: rgba(28, 40, 64, 0.85);
-      --border-subtle: rgba(255, 255, 255, 0.09);
-      --border-focus: #d11242;
-      --text-white: #f8fafc;
-      --text-dim: #cbd5e1;
-      --text-muted: #8899ac;
-      --emerald: #10b981;
-      --emerald-bg: rgba(16, 185, 129, 0.12);
-      --shadow-card: 0 24px 48px -12px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--border-subtle);
-      --radius-lg: 20px;
-      --radius-md: 12px;
-      --radius-sm: 8px;
+      --bg: #0f172a;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
     }
 
     * {
@@ -40,187 +30,112 @@
 
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: radial-gradient(circle at 50% 0%, #1c273c 0%, var(--bg-dark) 70%);
-      background-attachment: fixed;
-      color: var(--text-dim);
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #334155;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 48px 16px 64px 16px;
-      line-height: 1.55;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    /* Subtle decorative background vector grid */
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        radial-gradient(rgba(209, 18, 66, 0.12) 1px, transparent 1px),
-        radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-      background-size: 40px 40px, 12px 12px;
-      background-position: 0 0, 20px 20px;
-      pointer-events: none;
-      z-index: 0;
+      padding: 40px 16px;
     }
 
     .container {
       width: 100%;
       max-width: 680px;
-      position: relative;
-      z-index: 1;
     }
 
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      margin-bottom: 32px;
-      animation: fadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    .badge-bar {
+    .badge-pill {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(209, 18, 66, 0.14);
-      border: 1px solid rgba(209, 18, 66, 0.35);
+      gap: 6px;
+      background: rgba(209, 18, 66, 0.15);
+      border: 1px solid rgba(209, 18, 66, 0.4);
       color: #fda4af;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
+      font-size: 0.85rem;
+      font-weight: 600;
       padding: 6px 14px;
       border-radius: 9999px;
-      margin-bottom: 18px;
-      backdrop-filter: blur(8px);
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
-    .badge-dot {
-      width: 8px;
-      height: 8px;
-      background-color: var(--emerald);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--emerald);
-      animation: pulse 2s infinite;
+    .header-hero {
+      text-align: center;
+      margin-bottom: 32px;
     }
 
-    .hero h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: var(--text-white);
-      line-height: 1.15;
+    .header-hero h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #f8fafc;
+      line-height: 1.2;
+      margin-bottom: 12px;
       letter-spacing: -0.5px;
-      margin-bottom: 14px;
     }
 
-    .hero h1 span.highlight {
-      background: linear-gradient(135deg, #ff4d6d 0%, #fda4af 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
+    .header-hero p {
       font-size: 1.1rem;
-      color: var(--text-dim);
-      max-width: 560px;
+      color: #cbd5e1;
+      max-width: 540px;
       margin: 0 auto;
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
-    /* Main Card */
     .card {
-      background: var(--bg-surface);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
-      border: 1px solid var(--border-subtle);
-      padding: 36px 32px;
-      animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3), 0 8px 10px -6px rgba(0,0,0,0.2);
+      padding: 32px;
+      overflow: hidden;
     }
 
-    /* Value Highlights Grid */
-    .value-grid {
+    .value-props {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      padding-bottom: 26px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
       margin-bottom: 28px;
-      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .value-item {
+    .prop-item {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
+      gap: 8px;
       font-size: 0.92rem;
+      color: #1e293b;
       font-weight: 500;
-      color: #e2e8f0;
-      background: rgba(255, 255, 255, 0.025);
-      padding: 10px 12px;
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(255, 255, 255, 0.04);
     }
 
-    .value-icon {
-      color: #fb7185;
-      background: rgba(209, 18, 66, 0.18);
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .prop-icon {
+      color: var(--primary);
       flex-shrink: 0;
-      font-weight: 700;
-      font-size: 0.75rem;
       margin-top: 1px;
     }
 
-    /* Form Styles */
     form {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
 
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 7px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 6px;
     }
 
     label {
       font-size: 0.88rem;
       font-weight: 600;
-      color: #f1f5f9;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      color: #1e293b;
     }
 
-    label .req {
-      color: #fb7185;
-      margin-left: 2px;
-    }
-
-    label .subtag {
-      font-size: 0.75rem;
-      font-weight: 400;
-      color: var(--text-muted);
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
     }
 
     input[type="text"],
@@ -229,152 +144,157 @@
     select,
     textarea {
       width: 100%;
-      padding: 13px 15px;
-      background: rgba(11, 17, 32, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: var(--radius-sm);
-      color: var(--text-white);
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
       font-size: 0.95rem;
       font-family: inherit;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      color: #0f172a;
+      transition: all 0.2s ease;
+      background-color: #f8fafc;
+    }
+
+    input:focus, select:focus, textarea:focus {
       outline: none;
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-      color: #4b5d73;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: var(--border-focus);
-      background: rgba(15, 23, 42, 0.95);
-      box-shadow: 0 0 0 3px var(--primary-glow);
-    }
-
-    select {
-      appearance: none;
-      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-      background-size: 16px;
-      cursor: pointer;
-    }
-
-    select option {
-      background: #0f172a;
-      color: var(--text-white);
-      padding: 8px;
+      border-color: var(--primary);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(209, 18, 66, 0.15);
     }
 
     textarea {
       resize: vertical;
-      min-height: 90px;
-      line-height: 1.5;
+      min-height: 80px;
     }
 
-    /* Interactive Radio Pill Group */
-    .pill-group {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    .radio-pill-group {
+      display: flex;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .pill-group input[type="radio"] {
+    .radio-pill-group label {
+      flex: 1;
+      min-width: 120px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9rem;
+      background-color: #f8fafc;
+      transition: all 0.15s;
+    }
+
+    .radio-pill-group input[type="radio"] {
       display: none;
     }
 
-    .pill-label {
-      padding: 11px 8px;
-      text-align: center;
-      background: rgba(11, 17, 32, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      font-size: 0.86rem;
-      font-weight: 500;
-      color: var(--text-dim);
-      transition: all 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2px;
-      user-select: none;
+    .radio-pill-group input[type="radio"]:checked + label {
+      border-color: var(--primary);
+      background-color: rgba(209, 18, 66, 0.08);
+      color: var(--primary);
+      font-weight: 700;
     }
 
-    .pill-label .sub {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    .pill-group input[type="radio"]:checked + .pill-label {
-      background: rgba(209, 18, 66, 0.18);
-      border-color: #fb7185;
+    .submit-btn {
+      background-color: var(--primary);
       color: #ffffff;
-      font-weight: 600;
-      box-shadow: 0 0 16px rgba(209, 18, 66, 0.25);
-    }
-
-    .pill-group input[type="radio"]:checked + .pill-label .sub {
-      color: #fda4af;
-    }
-
-    /* Submit Button */
-    .btn-submit {
-      background: linear-gradient(135deg, var(--primary) 0%, #b00f37 100%);
-      color: var(--text-white);
       border: none;
-      border-radius: var(--radius-sm);
-      padding: 15px 24px;
+      border-radius: 8px;
+      padding: 15px 20px;
       font-size: 1.05rem;
       font-weight: 700;
-      font-family: 'Outfit', sans-serif;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 8px 24px var(--primary-glow);
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      box-shadow: 0 4px 12px rgba(209, 18, 66, 0.35);
+      margin-top: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      margin-top: 6px;
-      position: relative;
-      overflow: hidden;
     }
 
-    .btn-submit:hover {
-      background: linear-gradient(135deg, #e11d48 0%, var(--primary) 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(209, 18, 66, 0.45);
+    .submit-btn:hover {
+      background-color: var(--primary-hover);
     }
 
-    .btn-submit:active {
-      transform: translateY(0);
+    .submit-btn:active {
+      transform: scale(0.99);
     }
 
-    .btn-submit:disabled {
-      opacity: 0.65;
+    .submit-btn:disabled {
+      opacity: 0.75;
       cursor: not-allowed;
-      transform: none;
     }
 
-    /* Direct Contact Bar */
-    .contact-bar {
-      margin-top: 28px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border-subtle);
+    .spinner {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .direct-contact {
+      margin-top: 24px;
       text-align: center;
+      font-size: 0.9rem;
+      color: #64748b;
     }
 
-    .contact-title {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    .direct-contact a {
+      color: #0f172a;
       font-weight: 600;
+      text-decoration: none;
+    }
+
+    .direct-contact a:hover {
+      text-decoration: underline;
+      color: var(--primary);
+    }
+
+    /* Success Card inside the white card */
+    .success-card {
+      display: none;
+      text-align: center;
+      padding: 16px 8px;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      background: #ecfdf5;
+      color: #10b981;
+      border: 2px solid #a7f3d0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      margin: 0 auto 16px auto;
+      font-weight: 800;
+    }
+
+    .success-card h2 {
+      font-size: 1.6rem;
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .success-card p {
+      font-size: 1rem;
+      color: #475569;
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto 24px auto;
     }
 
     .action-chips {
@@ -382,251 +302,132 @@
       gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 24px;
     }
 
     .chip-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 9px 18px;
-      border-radius: 9999px;
-      font-size: 0.9rem;
+      padding: 10px 18px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      color: #0f172a;
       font-weight: 600;
+      font-size: 0.92rem;
       text-decoration: none;
-      transition: all 0.2s ease;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--text-white);
+      transition: all 0.15s ease;
     }
 
     .chip-btn:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.25);
-      transform: translateY(-1px);
+      background: #e2e8f0;
+      border-color: #94a3b8;
     }
 
     .chip-btn.text-chip {
-      color: #93c5fd;
-      border-color: rgba(147, 197, 253, 0.25);
-      background: rgba(59, 130, 246, 0.1);
+      background: #eff6ff;
+      border-color: #bfdbfe;
+      color: #1d4ed8;
     }
 
     .chip-btn.text-chip:hover {
-      background: rgba(59, 130, 246, 0.2);
-    }
-
-    /* Success Card State */
-    .success-card {
-      display: none;
-      text-align: center;
-      padding: 32px 16px;
-      animation: fadeIn 0.4s ease forwards;
-    }
-
-    .success-icon {
-      width: 64px;
-      height: 64px;
-      background: rgba(16, 185, 129, 0.15);
-      border: 2px solid var(--emerald);
-      color: var(--emerald);
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    .success-card h2 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.8rem;
-      color: var(--text-white);
-      margin-bottom: 10px;
-    }
-
-    .success-card p {
-      font-size: 1.05rem;
-      color: var(--text-dim);
-      margin-bottom: 24px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
+      background: #dbeafe;
+      border-color: #93c5fd;
     }
 
     .btn-reset {
-      background: transparent;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-dim);
-      padding: 10px 20px;
-      border-radius: var(--radius-sm);
-      font-size: 0.9rem;
-      font-weight: 600;
+      background: none;
+      border: none;
+      color: #64748b;
+      font-size: 0.88rem;
       cursor: pointer;
-      transition: all 0.2s;
+      text-decoration: underline;
+      padding: 8px 12px;
     }
 
     .btn-reset:hover {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-white);
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      margin-top: 36px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    footer a {
-      color: var(--text-dim);
-      text-decoration: none;
-    }
-
-    /* Animations */
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      color: #0f172a;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-    }
-
-    /* Spinner */
-    .spinner {
-      display: none;
-      width: 18px;
-      height: 18px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: #ffffff;
-      animation: spin 0.7s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Mobile Adaptations */
-    @media (max-width: 640px) {
-      body {
-        padding: 28px 12px 48px 12px;
-      }
-      .card {
-        padding: 24px 18px;
-      }
-      .hero h1 {
-        font-size: 1.95rem;
-      }
-      .value-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      .form-row {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .pill-group {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-      .pill-label {
-        padding: 10px 12px;
-        flex-direction: row;
-        justify-content: space-between;
-      }
+    @media (max-width: 600px) {
+      .value-props { grid-template-columns: 1fr; }
+      .row { grid-template-columns: 1fr; }
+      .card { padding: 24px 18px; }
+      .header-hero h1 { font-size: 1.75rem; }
+      body { padding: 24px 12px; }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- Header / Hero -->
-    <header class="hero">
-      <div class="badge-bar">
-        <span class="badge-dot"></span>
-        <span>CSUN In-Person Tutoring • Fall &amp; Spring</span>
-      </div>
-      <h1>PHYS 100A &amp; 100B <span class="highlight">Tutoring</span></h1>
-      <p>Calculus-free, step-by-step coaching designed specifically for CSUN Biology, Kinesiology, Pre-Med, and Allied Health majors.</p>
-    </header>
+    <div class="header-hero">
+      <div class="badge-pill">Cal State Northridge • Fall &amp; Spring</div>
+      <h1>PHYS 100A &amp; 100B Tutoring</h1>
+      <p>Calculus-free, step-by-step coaching designed specifically for Biology, Kinesiology, and Pre-Health majors.</p>
+    </div>
 
-    <!-- Main Card -->
     <div class="card">
-      <!-- Value Props -->
-      <div class="value-grid">
-        <div class="value-item">
-          <span class="value-icon">✓</span>
-          <span>In-person at CSUN Library &amp; campus coffee spots</span>
+      <div class="value-props">
+        <div class="prop-item">
+          <span class="prop-icon">✓</span>
+          <span>In-person on campus (CSUN Library / Coffee spots)</span>
         </div>
-        <div class="value-item">
-          <span class="value-icon">✓</span>
-          <span>WebAssign homework sets &amp; exam walkthroughs</span>
+        <div class="prop-item">
+          <span class="prop-icon">✓</span>
+          <span>WebAssign homework &amp; exam problem walk-throughs</span>
         </div>
-        <div class="value-item">
-          <span class="value-icon">✓</span>
+        <div class="prop-item">
+          <span class="prop-icon">✓</span>
           <span>Concept clarity for 100AL &amp; 100BL lab physics</span>
         </div>
-        <div class="value-item">
-          <span class="value-icon">✓</span>
-          <span>Flexible 1-on-1 or small group rates</span>
+        <div class="prop-item">
+          <span class="prop-icon">✓</span>
+          <span>Individual or 2–3 person group options</span>
         </div>
       </div>
 
-      <!-- Intake Form -->
+      <!-- Formspree or Google Apps Script Webhook endpoint -->
       <form id="tutoringIntakeForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <!-- Anti-Spam Honeypot Field -->
-        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-
-        <!-- Student Name & Phone -->
-        <div class="form-row">
+        <div class="row">
           <div class="form-group">
-            <label for="studentName">Your Name <span class="req">*</span></label>
-            <input type="text" id="studentName" name="name" placeholder="e.g. Alex Martinez" required autocomplete="name" />
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" name="name" placeholder="First & Last Name" required />
           </div>
           <div class="form-group">
-            <label for="studentPhone">Phone / Cell (for quick text) <span class="req">*</span></label>
-            <input type="tel" id="studentPhone" name="phone" placeholder="(818) 555-0123" required autocomplete="tel" />
+            <label for="phone">Phone / Cell (for quick text) *</label>
+            <input type="tel" id="phone" name="phone" placeholder="(818) 555-0123" required />
           </div>
         </div>
 
-        <!-- Student Email -->
         <div class="form-group">
-          <label for="studentEmail">Email <span class="req">*</span> <span class="subtag">CSUN or personal</span></label>
-          <input type="email" id="studentEmail" name="email" placeholder="alex.martinez.123@my.csun.edu" required autocomplete="email" />
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" placeholder="you@my.csun.edu" required />
         </div>
 
-        <!-- Course & Instructor -->
-        <div class="form-row">
+        <div class="row">
           <div class="form-group">
-            <label for="courseSelect">Which class are you taking? <span class="req">*</span></label>
-            <select id="courseSelect" name="course" required>
-              <option value="" disabled selected>Select your course...</option>
-              <option value="PHYS 100A">PHYS 100A (General Physics I - Lecture)</option>
-              <option value="PHYS 100AL">PHYS 100AL (General Physics I - Lab)</option>
-              <option value="PHYS 100A + 100AL">Both PHYS 100A &amp; 100AL</option>
-              <option value="PHYS 100B">PHYS 100B (General Physics II - Lecture)</option>
-              <option value="PHYS 100BL">PHYS 100BL (General Physics II - Lab)</option>
-              <option value="PHYS 100B + 100BL">Both PHYS 100B &amp; 100BL</option>
-              <option value="Other Science/Math">Other Science / Math Course</option>
+            <label for="course">Which class are you taking? *</label>
+            <select id="course" name="course" required>
+              <option value="" disabled selected>Select Course...</option>
+              <option value="PHYS 100A">PHYS 100A (Lecture)</option>
+              <option value="PHYS 100AL">PHYS 100AL (Lab)</option>
+              <option value="PHYS 100A + 100AL">Both PHYS 100A & 100AL</option>
+              <option value="PHYS 100B">PHYS 100B (Lecture)</option>
+              <option value="PHYS 100BL">PHYS 100BL (Lab)</option>
+              <option value="PHYS 100B + 100BL">Both PHYS 100B & 100BL</option>
+              <option value="Other">Other Science/Math Course</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="instructorName">Instructor / Professor <span class="subtag">Optional</span></label>
-            <input type="text" id="instructorName" name="instructor" list="instructorList" placeholder="e.g. Li, Greens Damaston, Collins" autocomplete="off" />
+            <label for="professor">Instructor / Professor</label>
+            <input type="text" id="professor" name="professor" list="instructorList" placeholder="e.g. Gao Li, Greens Damaston, Collins" />
             <datalist id="instructorList">
               <option value="Gao Li"></option>
               <option value="Greens Damaston"></option>
@@ -637,42 +438,26 @@
           </div>
         </div>
 
-        <!-- Primary Focus Pill Radios -->
         <div class="form-group">
-          <label>What help do you need most? <span class="req">*</span></label>
-          <div class="pill-group">
-            <div>
-              <input type="radio" name="focus" id="focus_exam" value="Upcoming Exam" checked />
-              <label for="focus_exam" class="pill-label">
-                <span>Upcoming Exam</span>
-                <span class="sub">Midterm / Final Prep</span>
-              </label>
-            </div>
-            <div>
-              <input type="radio" name="focus" id="focus_hw" value="Homework / WebAssign" />
-              <label for="focus_hw" class="pill-label">
-                <span>WebAssign / Math</span>
-                <span class="sub">Problem set breakdown</span>
-              </label>
-            </div>
-            <div>
-              <input type="radio" name="focus" id="focus_weekly" value="Weekly Coaching" />
-              <label for="focus_weekly" class="pill-label">
-                <span>Weekly Regular</span>
-                <span class="sub">Ongoing accountability</span>
-              </label>
-            </div>
+          <label>What help do you need most?</label>
+          <div class="radio-pill-group">
+            <input type="radio" name="focus_area" id="f_exam" value="Upcoming Exam" checked />
+            <label for="f_exam">Upcoming Exam</label>
+
+            <input type="radio" name="focus_area" id="f_hw" value="Homework / WebAssign" />
+            <label for="f_hw">Homework / Math</label>
+
+            <input type="radio" name="focus_area" id="f_weekly" value="Weekly Accountability" />
+            <label for="f_weekly">Weekly Regular</label>
           </div>
         </div>
 
-        <!-- Notes / Specific Topics -->
         <div class="form-group">
-          <label for="notes">Notes or specific topics you're stuck on <span class="subtag">Optional</span></label>
-          <textarea id="notes" name="notes" placeholder="e.g., Kinematics vectors, free-body diagrams, circuits, or prepping for Midterm 1..."></textarea>
+          <label for="notes">Notes or specific topics you're stuck on (optional)</label>
+          <textarea id="notes" name="notes" placeholder="e.g., Kinematics vectors, free body diagrams, or preparing for Midterm 1..."></textarea>
         </div>
 
-        <!-- Submit Button -->
-        <button type="submit" id="submitBtn" class="btn-submit">
+        <button type="submit" id="submitBtn" class="submit-btn">
           <span class="spinner" id="btnSpinner"></span>
           <span id="btnText">Request Tutoring Session →</span>
         </button>
@@ -682,8 +467,8 @@
       <div id="successCard" class="success-card">
         <div class="success-icon">✓</div>
         <h2>Request Received!</h2>
-        <p>Thanks, <strong id="tuteeNameDisplay" style="color: #ffffff;"></strong>! Keith will text you shortly at <strong id="tuteePhoneDisplay" style="color: #ffffff;"></strong> to coordinate an in-person meeting that fits your schedule.</p>
-        <div class="action-chips" style="margin-bottom: 24px;">
+        <p>Thanks, <strong id="tuteeNameDisplay" style="color: #0f172a;"></strong>! Keith will text you shortly at <strong id="tuteePhoneDisplay" style="color: #0f172a;"></strong> to coordinate an in-person meeting that fits your schedule.</p>
+        <div class="action-chips">
           <a id="directTextLink" href="sms:2135328781" class="chip-btn text-chip">
             💬 Text Keith Directly
           </a>
@@ -696,29 +481,15 @@
         </div>
       </div>
 
-      <!-- Direct Contact Fallback Bar (No Email Exposed!) -->
-      <div class="contact-bar">
-        <div class="contact-title">Need Immediate Help? Reach Keith Directly</div>
-        <div class="action-chips">
-          <a href="tel:2135328781" class="chip-btn">
-            <span>📞</span> Call: (213) 532-8781
-          </a>
-          <a href="sms:2135328781" class="chip-btn text-chip">
-            <span>💬</span> Text: (213) 532-8781
-          </a>
-        </div>
+      <div class="direct-contact">
+        Prefer direct text? Reach Keith directly at <a href="tel:2135328781">213-532-8781</a>.
       </div>
     </div>
-
-    <!-- Page Footer -->
-    <footer>
-      <p>Cal State Northridge (CSUN) Physics Tutoring • Private Independent Academic Coaching</p>
-    </footer>
   </div>
 
   <script>
     // Format US phone number as user types
-    const phoneInput = document.getElementById('studentPhone');
+    const phoneInput = document.getElementById('phone');
     phoneInput.addEventListener('input', function (e) {
       let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
       if (!x[2]) {
@@ -741,12 +512,12 @@
     intakeForm.addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      const name = document.getElementById('studentName').value.trim();
-      const phone = document.getElementById('studentPhone').value.trim();
-      const email = document.getElementById('studentEmail').value.trim();
-      const course = document.getElementById('courseSelect').value;
-      const instructor = document.getElementById('instructorName').value.trim();
-      const focus = document.querySelector('input[name="focus"]:checked')?.value || 'Upcoming Exam';
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const course = document.getElementById('course').value;
+      const professor = document.getElementById('professor').value.trim();
+      const focus = document.querySelector('input[name="focus_area"]:checked')?.value || 'Upcoming Exam';
       const notes = document.getElementById('notes').value.trim();
 
       // UI Loading state
@@ -791,7 +562,7 @@
           phone,
           email,
           course,
-          instructor,
+          professor,
           focus,
           notes
         });

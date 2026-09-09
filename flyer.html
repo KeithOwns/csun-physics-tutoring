@@ -145,42 +145,56 @@
     .contact-banner {
       border: 3.5px solid #000000;
       padding: 14px 20px;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr auto 1.15fr auto auto;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+      gap: 16px;
       margin-bottom: 24px;
       background: #fafafa;
     }
 
-    .contact-details {
-      flex: 1;
+    .contact-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .call-text-headline {
-      font-size: 1.85rem;
+    .contact-tag {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #333333;
+      margin-bottom: 2px;
+    }
+
+    .contact-val-phone {
+      font-size: 1.65rem;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+      line-height: 1.15;
+      white-space: nowrap;
+    }
+
+    .contact-val-web {
+      font-size: 1.65rem;
       font-weight: 900;
       letter-spacing: -0.5px;
-      margin-bottom: 4px;
+      line-height: 1.15;
+      white-space: nowrap;
     }
 
-    .call-text-number {
-      font-size: 2rem;
-      font-weight: 900;
-      letter-spacing: 1px;
+    .contact-desc {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #555555;
+      margin-top: 3px;
     }
 
-    .web-intake-link {
-      margin-top: 6px;
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
-
-    .web-intake-url {
-      font-family: monospace;
-      font-size: 1.05rem;
-      font-weight: 800;
-      text-decoration: underline;
+    .contact-vsep {
+      width: 2px;
+      height: 68px;
+      background: #000000;
     }
 
     .qr-container {
@@ -189,10 +203,10 @@
     }
 
     .qr-box {
-      width: 96px;
-      height: 96px;
+      width: 90px;
+      height: 90px;
       border: 2px solid #000000;
-      padding: 4px;
+      padding: 3px;
       background: #ffffff;
       display: flex;
       align-items: center;
@@ -206,10 +220,10 @@
     }
 
     .qr-label {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 800;
       text-transform: uppercase;
-      margin-top: 4px;
+      margin-top: 3px;
       letter-spacing: 0.5px;
     }
 
@@ -365,24 +379,30 @@
         </div>
       </div>
 
-      <!-- Contact Banner - NO EMAIL EXPOSED! -->
+      <!-- Contact Banner - Balanced & Prominent -->
       <div class="contact-banner">
-        <div class="contact-details">
-          <div class="call-text-headline">Call or Text: <span class="call-text-number">213-532-8781</span></div>
-          <div class="web-intake-link">
-            Request Session Online: <span class="web-intake-url">JarHeadTutor.com</span>
-          </div>
-          <div style="font-size: 0.88rem; font-weight: 600; color: #444; margin-top: 4px;">
-            Scan QR code for instant session scheduling &amp; problem triage.
-          </div>
+        <div class="contact-col">
+          <div class="contact-tag">Call or Text</div>
+          <div class="contact-val-phone">213-532-8781</div>
+          <div class="contact-desc">Direct student line • Fast reply</div>
         </div>
+
+        <div class="contact-vsep"></div>
+
+        <div class="contact-col">
+          <div class="contact-tag">Request Online</div>
+          <div class="contact-val-web">JarHeadTutor.com</div>
+          <div class="contact-desc">Instant intake &amp; problem triage</div>
+        </div>
+
+        <div class="contact-vsep"></div>
 
         <div class="qr-container">
           <div class="qr-box">
             <!-- QR code dynamically points to JarHeadTutor.com -->
             <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://www.jarheadtutor.com/&format=svg" alt="Scan QR Code to Schedule" />
           </div>
-          <div class="qr-label">Scan to Schedule</div>
+          <div class="qr-label">Scan to Book</div>
         </div>
       </div>
     </div>

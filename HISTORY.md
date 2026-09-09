@@ -11,10 +11,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added printable 8.5" x 11" flyer template (`flyer.html`) with tear-off tabs and dynamic QR code linking to GitHub Pages.
 - Added compiled 8.5" x 11" print-ready PDF flyer (`CSUN_PHYS_100_Tutoring_Flyer_Keith-v3.pdf`).
 - Added Google Apps Script webhook integration (`google-apps-script.js` and `SETUP_LEADS_WEBHOOK.md`) for direct Google Sheets logging and instant email alerts.
+- Added custom domain configuration (`CNAME` and `DNS_SETUP.md`) for `www.jarheadtutor.com`.
 - Added client-side phone number formatting, form validation, anti-spam honeypot, and local storage submission backup.
 
 ### Changed
 - Migrated student intake channel from printed personal email to web form.
+- Updated flyer collateral (`flyer.html` and `CSUN_PHYS_100_Tutoring_Flyer_Keith-v3.pdf`) to feature `JarHeadTutor.com` in contact banner, QR code, and tear-off tabs.
 
 ### Removed
 - Removed public exposure of personal email address (`keithowen@protonmail.com`) from landing page and flyer collateral.

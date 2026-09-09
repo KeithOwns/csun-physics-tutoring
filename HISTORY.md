@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Updated flyer collateral (`flyer.html` and `CSUN_PHYS_100_Tutoring_Flyer_Keith-v3.pdf`) to feature `JarHeadTutor.com` in contact banner, QR code, and tear-off tabs.
 
 ### Fixed
+- Provisioned SSL certificate and enabled HTTPS enforcement for custom domains `jarheadtutor.com` and `www.jarheadtutor.com`.
 - Fixed missing vertical dashed cut-line between the last two tear-off tabs on flyer collateral (`flyer.html` and compiled PDFs).
 
 ### Removed

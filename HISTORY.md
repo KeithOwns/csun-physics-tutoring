@@ -15,6 +15,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added client-side phone number formatting, form validation, anti-spam honeypot, and local storage submission backup.
 
 ### Changed
+- Updated intake form contact section on `index.html` to allow prospective students to enter cell, email, or both, with helper text and validation requiring at least one contact method.
+- Tailored submission confirmation messaging to reflect whether the student provided a phone number, email address, or both.
+- Updated Google Apps Script webhook notification (`google-apps-script.js` and `SETUP_LEADS_WEBHOOK.md`) to dynamically render quick actions for call, text, or email based on student input.
 - Realigned flyer contact banner into a balanced 3-column layout (Phone, Website, QR code) with vertical dividers, eliminating dead space and typography inconsistencies.
 - Restored original clean white-card landing page design with high contrast, legible typography, and streamlined layout.
 - Migrated student intake channel from printed personal email to web form.

@@ -166,6 +166,38 @@
       min-height: 80px;
     }
 
+    .contact-legend {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .contact-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .sub-label {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #475569;
+    }
+
+    .contact-error {
+      font-size: 0.82rem;
+      color: #dc2626;
+      font-weight: 600;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .input-error {
+      border-color: #dc2626 !important;
+      background-color: #fef2f2 !important;
+    }
+
     .radio-pill-group {
       display: flex;
       gap: 10px;
@@ -395,20 +427,27 @@
 
       <!-- Formspree or Google Apps Script Webhook endpoint -->
       <form id="tutoringIntakeForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <div class="row">
-          <div class="form-group">
-            <label for="name">Your Name *</label>
-            <input type="text" id="name" name="name" placeholder="First & Last Name" required />
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone / Cell (for quick text) *</label>
-            <input type="tel" id="phone" name="phone" placeholder="(818) 555-0123" required />
-          </div>
+        <div class="form-group">
+          <label for="name">Your Name *</label>
+          <input type="text" id="name" name="name" placeholder="First & Last Name" required />
         </div>
 
-        <div class="form-group">
-          <label for="email">Email *</label>
-          <input type="email" id="email" name="email" placeholder="you@my.csun.edu" required />
+        <div class="form-group" id="contactGroup">
+          <div class="contact-legend">
+            <label>Contact Info <span style="color: var(--primary);">*</span></label>
+            <span class="contact-hint">Provide cell, email, or both</span>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label for="phone" class="sub-label">Phone / Cell (for quick text)</label>
+              <input type="tel" id="phone" name="phone" placeholder="(818) 555-0123" />
+            </div>
+            <div class="form-group">
+              <label for="email" class="sub-label">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@my.csun.edu" />
+            </div>
+          </div>
+          <div id="contactError" class="contact-error">Please provide either a phone number or an email address so Keith can reach you.</div>
         </div>
 
         <div class="row">
@@ -467,7 +506,7 @@
       <div id="successCard" class="success-card">
         <div class="success-icon">✓</div>
         <h2>Request Received!</h2>
-        <p>Thanks, <strong id="tuteeNameDisplay" style="color: #0f172a;"></strong>! Keith will text you shortly at <strong id="tuteePhoneDisplay" style="color: #0f172a;"></strong> to coordinate an in-person meeting that fits your schedule.</p>
+        <p id="successMessageText">Thanks, <strong id="tuteeNameDisplay" style="color: #0f172a;"></strong>! Keith will reach out shortly to coordinate an in-person meeting that fits your schedule.</p>
         <div class="action-chips">
           <a id="directTextLink" href="sms:2135328781" class="chip-btn text-chip">
             💬 Text Keith Directly
@@ -488,6 +527,13 @@
   </div>
 
   <script>
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
     // Format US phone number as user types
     const phoneInput = document.getElementById('phone');
     phoneInput.addEventListener('input', function (e) {
@@ -499,26 +545,53 @@
       }
     });
 
+    const emailInput = document.getElementById('email');
+    const contactError = document.getElementById('contactError');
+
+    function clearContactErrors() {
+      if (phoneInput.value.trim() || emailInput.value.trim()) {
+        contactError.style.display = 'none';
+        phoneInput.classList.remove('input-error');
+        emailInput.classList.remove('input-error');
+      }
+    }
+    phoneInput.addEventListener('input', clearContactErrors);
+    emailInput.addEventListener('input', clearContactErrors);
+
     const intakeForm = document.getElementById('tutoringIntakeForm');
     const submitBtn = document.getElementById('submitBtn');
     const btnSpinner = document.getElementById('btnSpinner');
     const btnText = document.getElementById('btnText');
     const successCard = document.getElementById('successCard');
     const resetBtn = document.getElementById('resetBtn');
-    const tuteeNameDisplay = document.getElementById('tuteeNameDisplay');
-    const tuteePhoneDisplay = document.getElementById('tuteePhoneDisplay');
+    const successMessageText = document.getElementById('successMessageText');
     const directTextLink = document.getElementById('directTextLink');
 
     intakeForm.addEventListener('submit', async function (e) {
       e.preventDefault();
 
+      // Check standard form validity first (required Name, Course, valid email syntax if entered)
+      if (!intakeForm.checkValidity()) {
+        intakeForm.reportValidity();
+        return;
+      }
+
       const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const email = document.getElementById('email').value.trim();
+      const phone = phoneInput.value.trim();
+      const email = emailInput.value.trim();
       const course = document.getElementById('course').value;
       const professor = document.getElementById('professor').value.trim();
       const focus = document.querySelector('input[name="focus_area"]:checked')?.value || 'Upcoming Exam';
       const notes = document.getElementById('notes').value.trim();
+
+      // Validation: require at least one contact method (cell or email or both)
+      if (!phone && !email) {
+        contactError.style.display = 'block';
+        phoneInput.classList.add('input-error');
+        emailInput.classList.add('input-error');
+        phoneInput.focus();
+        return;
+      }
 
       // UI Loading state
       submitBtn.disabled = true;
@@ -578,12 +651,21 @@
         btnText.textContent = 'Request Tutoring Session →';
 
         intakeForm.style.display = 'none';
-        tuteeNameDisplay.textContent = name || 'Student';
-        tuteePhoneDisplay.textContent = phone || 'your phone';
+
+        const safeName = escapeHtml(name || 'Student');
+        const safePhone = escapeHtml(phone);
+        const safeEmail = escapeHtml(email);
+
+        if (phone && email) {
+          successMessageText.innerHTML = `Thanks, <strong style="color: #0f172a;">${safeName}</strong>! Keith will reach out shortly via text at <strong style="color: #0f172a;">${safePhone}</strong> or email at <strong style="color: #0f172a;">${safeEmail}</strong> to coordinate an in-person meeting that fits your schedule.`;
+        } else if (phone) {
+          successMessageText.innerHTML = `Thanks, <strong style="color: #0f172a;">${safeName}</strong>! Keith will text you shortly at <strong style="color: #0f172a;">${safePhone}</strong> to coordinate an in-person meeting that fits your schedule.`;
+        } else {
+          successMessageText.innerHTML = `Thanks, <strong style="color: #0f172a;">${safeName}</strong>! Keith will email you shortly at <strong style="color: #0f172a;">${safeEmail}</strong> to coordinate an in-person meeting that fits your schedule.`;
+        }
         
         // Prepare pre-filled SMS link
-        const cleanPhone = phone.replace(/\D/g, '');
-        const smsBody = encodeURIComponent(`Hi Keith, this is ${name}. I just submitted an intake form for ${course} tutoring.`);
+        const smsBody = encodeURIComponent(`Hi Keith, this is ${name || 'a student'}. I just submitted an intake form for ${course || 'physics'} tutoring.`);
         directTextLink.href = `sms:2135328781?body=${smsBody}`;
 
         successCard.style.display = 'block';
@@ -593,6 +675,9 @@
 
     resetBtn.addEventListener('click', function () {
       intakeForm.reset();
+      contactError.style.display = 'none';
+      phoneInput.classList.remove('input-error');
+      emailInput.classList.remove('input-error');
       successCard.style.display = 'none';
       intakeForm.style.display = 'flex';
     });

@@ -63,10 +63,15 @@ function doPost(e) {
       "Notes:        " + (notes ? notes : "(None)") + "\n" +
       "----------------------------------------\n" +
       "Submitted:    " + timestamp.toLocaleString() + "\n\n" +
-      "Quick Actions:\n" +
-      "• Call: " + phone + "\n" +
-      "• Text: " + phone + "\n" +
-      "• View Sheet: " + SpreadsheetApp.getActiveSpreadsheet().getUrl();
+      "Quick Actions:\n";
+
+    if (phone && phone !== "N/A") {
+      body += "• Call: " + phone + "\n• Text: " + phone + "\n";
+    }
+    if (email && email !== "N/A") {
+      body += "• Email: " + email + "\n";
+    }
+    body += "• View Sheet: " + SpreadsheetApp.getActiveSpreadsheet().getUrl();
 
     MailApp.sendEmail({ to: recipientEmail, subject: subject, body: body });
 

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CSUN PHYS 100A &amp; 100B Tutoring | Calculus-Free Physics Coaching</title>
-  <meta name="description" content="Calculus-free, step-by-step physics tutoring for CSUN students taking PHYS 100A, 100AL, 100B, and 100BL. WebAssign homework, exam prep, and lab clarity on campus." />
+  <title>College Physics Tutoring | CSUN, Pierce, Valley &amp; Online Whiteboard Coaching</title>
+  <meta name="description" content="Calculus-free, step-by-step physics tutoring for CSUN (PHYS 100A/B), Pierce College &amp; LAVC (PHYS 6/7), COC, and UCLA students. WebAssign homework, exam prep, and live Zoom coaching." />
   
   <!-- Modern Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -387,12 +387,65 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Sticky Mobile Quick-Action Bar */
+    .mobile-action-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 10px 16px;
+      padding-bottom: max(10px, env(safe-area-inset-bottom));
+      z-index: 1000;
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .mobile-action-inner {
+      display: flex;
+      gap: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .mobile-action-inner a {
+      flex: 1;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .mobile-btn-text {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe !important;
+    }
+
+    .mobile-btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(209, 18, 66, 0.4);
+    }
+
     @media (max-width: 600px) {
       .value-props { grid-template-columns: 1fr; }
       .row { grid-template-columns: 1fr; }
       .card { padding: 24px 18px; }
       .header-hero h1 { font-size: 1.75rem; }
-      body { padding: 24px 12px; }
+      body { padding: 24px 12px 84px 12px; }
+      .mobile-action-bar { display: block; }
     }
   </style>
 </head>
@@ -400,16 +453,16 @@
 
   <div class="container">
     <div class="header-hero">
-      <div class="badge-pill">Cal State Northridge • Fall &amp; Spring</div>
-      <h1>PHYS 100A &amp; 100B Tutoring</h1>
-      <p>Calculus-free, step-by-step coaching designed specifically for Biology, Kinesiology, and Pre-Health majors.</p>
+      <div id="campusBadge" class="badge-pill">CSUN &amp; San Fernando Valley • Fall &amp; Spring</div>
+      <h1 id="heroTitle">College Physics Tutoring</h1>
+      <p id="heroSubtitle">Calculus-free, step-by-step coaching designed specifically for Biology, Kinesiology, Pre-Health, and STEM majors.</p>
     </div>
 
     <div class="card">
       <div class="value-props">
         <div class="prop-item">
           <span class="prop-icon">✓</span>
-          <span>In-person on campus (CSUN Library / Coffee spots)</span>
+          <span>In-person on campus (CSUN / SFV) or Online via Live Zoom Whiteboard</span>
         </div>
         <div class="prop-item">
           <span class="prop-icon">✓</span>
@@ -417,7 +470,7 @@
         </div>
         <div class="prop-item">
           <span class="prop-icon">✓</span>
-          <span>Concept clarity for 100AL &amp; 100BL lab physics</span>
+          <span>Concept clarity for lecture and lab physics</span>
         </div>
         <div class="prop-item">
           <span class="prop-icon">✓</span>
@@ -452,6 +505,19 @@
 
         <div class="row">
           <div class="form-group">
+            <label for="campus">Your College / Campus *</label>
+            <select id="campus" name="campus" required>
+              <option value="CSUN" selected>CSUN (Cal State Northridge)</option>
+              <option value="Pierce">Pierce College (Woodland Hills)</option>
+              <option value="LAVC">LA Valley College (Valley Glen)</option>
+              <option value="LAMC">LA Mission College (Sylmar)</option>
+              <option value="COC">College of the Canyons (Santa Clarita)</option>
+              <option value="UCLA">UCLA</option>
+              <option value="Moorpark">Moorpark College</option>
+              <option value="Other">Other College / High School</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label for="course">Which class are you taking? *</label>
             <select id="course" name="course" required>
               <option value="" disabled selected>Select Course...</option>
@@ -461,9 +527,13 @@
               <option value="PHYS 100B">PHYS 100B (Lecture)</option>
               <option value="PHYS 100BL">PHYS 100BL (Lab)</option>
               <option value="PHYS 100B + 100BL">Both PHYS 100B & 100BL</option>
-              <option value="Other">Other Science/Math Course</option>
+              <option value="PHYS 220A/B">PHYS 220A / 220B (Calculus-based)</option>
+              <option value="Other">Other CSUN Course</option>
             </select>
           </div>
+        </div>
+
+        <div class="row">
           <div class="form-group">
             <label for="professor">Instructor / Professor</label>
             <input type="text" id="professor" name="professor" list="instructorList" placeholder="e.g. Gao Li, Greens Damaston, Collins" />
@@ -474,6 +544,19 @@
               <option value="Sethi"></option>
               <option value="Sayre"></option>
             </datalist>
+          </div>
+          <div class="form-group">
+            <label>Session Format</label>
+            <div class="radio-pill-group">
+              <input type="radio" name="format" id="fmt_flex" value="Flexible / Either" checked />
+              <label for="fmt_flex" style="min-width: 80px;">Flexible</label>
+
+              <input type="radio" name="format" id="fmt_online" value="Online (Zoom Whiteboard)" />
+              <label for="fmt_online" style="min-width: 80px;">Online Zoom</label>
+
+              <input type="radio" name="format" id="fmt_inperson" value="In-Person (Campus/SFV)" />
+              <label for="fmt_inperson" style="min-width: 80px;">In-Person</label>
+            </div>
           </div>
         </div>
 
@@ -526,6 +609,18 @@
     </div>
   </div>
 
+  <!-- Sticky Mobile Quick-Action Bar -->
+  <div class="mobile-action-bar">
+    <div class="mobile-action-inner">
+      <a id="mobileTextBtn" href="sms:2135328781?body=Hi%20Keith%2C%20I'm%20looking%20for%20physics%20tutoring%20help." class="mobile-btn-text">
+        💬 Text Keith
+      </a>
+      <a href="#tutoringIntakeForm" class="mobile-btn-primary" id="mobileRequestBtn">
+        📝 Book Session
+      </a>
+    </div>
+  </div>
+
   <script>
     function escapeHtml(str) {
       if (!str) return '';
@@ -533,6 +628,104 @@
       div.textContent = str;
       return div.innerHTML;
     }
+
+    const CAMPUS_DATA = {
+      'CSUN': {
+        name: 'CSUN',
+        badge: 'Cal State Northridge • In-Person & Online',
+        courses: [
+          { val: 'PHYS 100A', text: 'PHYS 100A (Lecture)' },
+          { val: 'PHYS 100AL', text: 'PHYS 100AL (Lab)' },
+          { val: 'PHYS 100A + 100AL', text: 'Both PHYS 100A & 100AL' },
+          { val: 'PHYS 100B', text: 'PHYS 100B (Lecture)' },
+          { val: 'PHYS 100BL', text: 'PHYS 100BL (Lab)' },
+          { val: 'PHYS 100B + 100BL', text: 'Both PHYS 100B & 100BL' },
+          { val: 'PHYS 220A/B', text: 'PHYS 220A / 220B (Calculus-based)' },
+          { val: 'Other CSUN Course', text: 'Other CSUN Course' }
+        ],
+        instructors: ['Gao Li', 'Greens Damaston', 'Collins', 'Sethi', 'Sayre', 'Cadavid']
+      },
+      'Pierce': {
+        name: 'Pierce College',
+        badge: 'Pierce College • Online & SFV In-Person',
+        courses: [
+          { val: 'PHYS 6', text: 'PHYS 6 (General Physics I - Algebra)' },
+          { val: 'PHYS 7', text: 'PHYS 7 (General Physics II - Algebra)' },
+          { val: 'PHYS 66', text: 'PHYS 66 (Life Science Physics I - Calc)' },
+          { val: 'PHYS 67', text: 'PHYS 67 (Life Science Physics II - Calc)' },
+          { val: 'PHYS 101/102/103', text: 'PHYS 101 / 102 / 103 (Engineers)' },
+          { val: 'Other Pierce Course', text: 'Other Pierce Course' }
+        ],
+        instructors: ['Lee', 'Fields', 'Meyer', 'Chilaka']
+      },
+      'LAVC': {
+        name: 'LA Valley College',
+        badge: 'LA Valley College • Online & SFV In-Person',
+        courses: [
+          { val: 'PHYS 6', text: 'PHYS 6 (General Physics I - Algebra)' },
+          { val: 'PHYS 7', text: 'PHYS 7 (General Physics II - Algebra)' },
+          { val: 'PHYS 37/38/39', text: 'PHYS 37 / 38 / 39 (Physics for Engineers)' },
+          { val: 'Other LAVC Course', text: 'Other LAVC Course' }
+        ],
+        instructors: ['Haynes', 'Haley', 'Gevorkian']
+      },
+      'LAMC': {
+        name: 'LA Mission College',
+        badge: 'LA Mission College • Online & SFV In-Person',
+        courses: [
+          { val: 'PHYS 6', text: 'PHYS 6 (General Physics I - Algebra)' },
+          { val: 'PHYS 7', text: 'PHYS 7 (General Physics II - Algebra)' },
+          { val: 'Other Mission Course', text: 'Other Mission Course' }
+        ],
+        instructors: ['Razzaghi', 'Sample']
+      },
+      'COC': {
+        name: 'College of the Canyons',
+        badge: 'College of the Canyons • Online & In-Person',
+        courses: [
+          { val: 'PHYS 110', text: 'PHYS 110 (General Physics I - Algebra)' },
+          { val: 'PHYS 111', text: 'PHYS 111 (General Physics II - Algebra)' },
+          { val: 'PHYS 220/221/222', text: 'PHYS 220 / 221 / 222 (Engineers)' },
+          { val: 'Other COC Course', text: 'Other COC Course' }
+        ],
+        instructors: ['Ramsay', 'Al-Taani', 'Manvi']
+      },
+      'UCLA': {
+        name: 'UCLA',
+        badge: 'UCLA • Online Live Whiteboard Coaching',
+        courses: [
+          { val: 'PHYS 5A', text: 'PHYS 5A (Life Sciences - Mechanics & Waves)' },
+          { val: 'PHYS 5B', text: 'PHYS 5B (Life Sciences - Thermodynamics)' },
+          { val: 'PHYS 5C', text: 'PHYS 5C (Life Sciences - E&M & Optics)' },
+          { val: 'PHYS 1A/1B/1C', text: 'PHYS 1A / 1B / 1C (Engineers)' },
+          { val: 'Other UCLA Course', text: 'Other UCLA Course' }
+        ],
+        instructors: ['Corbin', 'Tung', 'Samani', 'Bauer', 'Schriver']
+      },
+      'Moorpark': {
+        name: 'Moorpark College',
+        badge: 'Moorpark College • Online & In-Person',
+        courses: [
+          { val: 'PHYS 10A', text: 'PHYS 10A (Introductory Physics I)' },
+          { val: 'PHYS 10B', text: 'PHYS 10B (Introductory Physics II)' },
+          { val: 'PHYS 20A/B', text: 'PHYS 20A / 20B (Mechanics & E&M)' },
+          { val: 'Other Moorpark Course', text: 'Other Moorpark Course' }
+        ],
+        instructors: ['Harper', 'Miller']
+      },
+      'Other': {
+        name: 'Other College / University',
+        badge: 'Valley & LA Colleges • In-Person & Online',
+        courses: [
+          { val: 'General Physics I (Algebra)', text: 'General Physics I (Algebra/Trig-based)' },
+          { val: 'General Physics II (Algebra)', text: 'General Physics II (Algebra/Trig-based)' },
+          { val: 'University Physics (Calculus)', text: 'University Physics (Calculus-based)' },
+          { val: 'High School AP Physics', text: 'AP Physics (1, 2, or C)' },
+          { val: 'Other Science/Math', text: 'Other Science/Math Course' }
+        ],
+        instructors: []
+      }
+    };
 
     // Format US phone number as user types
     const phoneInput = document.getElementById('phone');
@@ -558,6 +751,70 @@
     phoneInput.addEventListener('input', clearContactErrors);
     emailInput.addEventListener('input', clearContactErrors);
 
+    // Multi-Campus Dynamic Logic
+    const campusSelect = document.getElementById('campus');
+    const courseSelect = document.getElementById('course');
+    const campusBadge = document.getElementById('campusBadge');
+    const instructorList = document.getElementById('instructorList');
+    const professorInput = document.getElementById('professor');
+
+    function updateCampus(campusKey) {
+      const data = CAMPUS_DATA[campusKey] || CAMPUS_DATA['Other'];
+      if (campusBadge) {
+        campusBadge.textContent = data.badge;
+      }
+
+      // Populate courses
+      courseSelect.innerHTML = '<option value="" disabled selected>Select Course...</option>';
+      data.courses.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.val;
+        opt.textContent = c.text;
+        courseSelect.appendChild(opt);
+      });
+
+      // Populate instructor datalist
+      instructorList.innerHTML = '';
+      data.instructors.forEach(inst => {
+        const opt = document.createElement('option');
+        opt.value = inst;
+        instructorList.appendChild(opt);
+      });
+      if (data.instructors.length > 0) {
+        professorInput.placeholder = 'e.g. ' + data.instructors.slice(0, 3).join(', ');
+      } else {
+        professorInput.placeholder = 'Instructor / Professor Name';
+      }
+    }
+
+    campusSelect.addEventListener('change', function (e) {
+      updateCampus(e.target.value);
+    });
+
+    // Detect URL parameter (e.g. ?school=pierce, ?school=ucla, ?school=lavc, ?school=coc)
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const schoolParam = (params.get('school') || params.get('campus') || '').toLowerCase();
+      const schoolMap = {
+        'csun': 'CSUN',
+        'pierce': 'Pierce',
+        'lavc': 'LAVC',
+        'valley': 'LAVC',
+        'lamc': 'LAMC',
+        'mission': 'LAMC',
+        'coc': 'COC',
+        'canyons': 'COC',
+        'ucla': 'UCLA',
+        'moorpark': 'Moorpark'
+      };
+      if (schoolParam && schoolMap[schoolParam]) {
+        campusSelect.value = schoolMap[schoolParam];
+      }
+    } catch (err) {}
+
+    // Initialize campus dropdown options
+    updateCampus(campusSelect.value);
+
     const intakeForm = document.getElementById('tutoringIntakeForm');
     const submitBtn = document.getElementById('submitBtn');
     const btnSpinner = document.getElementById('btnSpinner');
@@ -579,8 +836,11 @@
       const name = document.getElementById('name').value.trim();
       const phone = phoneInput.value.trim();
       const email = emailInput.value.trim();
-      const course = document.getElementById('course').value;
-      const professor = document.getElementById('professor').value.trim();
+      const campus = campusSelect.value;
+      const campusName = (CAMPUS_DATA[campus] ? CAMPUS_DATA[campus].name : campus);
+      const course = courseSelect.value;
+      const format = document.querySelector('input[name="format"]:checked')?.value || 'Flexible / Either';
+      const professor = professorInput.value.trim();
       const focus = document.querySelector('input[name="focus_area"]:checked')?.value || 'Upcoming Exam';
       const notes = document.getElementById('notes').value.trim();
 
@@ -634,7 +894,9 @@
           name,
           phone,
           email,
+          campus: campusName,
           course,
+          format,
           professor,
           focus,
           notes
@@ -655,17 +917,20 @@
         const safeName = escapeHtml(name || 'Student');
         const safePhone = escapeHtml(phone);
         const safeEmail = escapeHtml(email);
+        const safeCampus = escapeHtml(campusName);
+        const safeCourse = escapeHtml(course);
+        const safeFormat = escapeHtml(format);
 
         if (phone && email) {
-          successMessageText.innerHTML = `Thanks, <strong style="color: #0f172a;">${safeName}</strong>! Keith will reach out shortly via text at <strong style="color: #0f172a;">${safePhone}</strong> or email at <strong style="color: #0f172a;">${safeEmail}</strong> to coordinate an in-person meeting that fits your schedule.`;
+          successMessageText.innerHTML = `Thanks, <strong style="color: #0f172a;">${safeName}</strong>! Keith will reach out shortly via text at <strong style="color: #0f172a;">${safePhone}</strong> or email at <strong style="color: #0f172a;">${safeEmail}</strong> to coordinate your ${safeFormat} session for ${safeCampus} (${safeCourse}).`;
         } else if (phone) {
-          successMessageText.innerHTML = `Thanks, <strong style="color: #0f172a;">${safeName}</strong>! Keith will text you shortly at <strong style="color: #0f172a;">${safePhone}</strong> to coordinate an in-person meeting that fits your schedule.`;
+          successMessageText.innerHTML = `Thanks, <strong style="color: #0f172a;">${safeName}</strong>! Keith will text you shortly at <strong style="color: #0f172a;">${safePhone}</strong> to coordinate your ${safeFormat} session for ${safeCampus} (${safeCourse}).`;
         } else {
-          successMessageText.innerHTML = `Thanks, <strong style="color: #0f172a;">${safeName}</strong>! Keith will email you shortly at <strong style="color: #0f172a;">${safeEmail}</strong> to coordinate an in-person meeting that fits your schedule.`;
+          successMessageText.innerHTML = `Thanks, <strong style="color: #0f172a;">${safeName}</strong>! Keith will email you shortly at <strong style="color: #0f172a;">${safeEmail}</strong> to coordinate your ${safeFormat} session for ${safeCampus} (${safeCourse}).`;
         }
         
         // Prepare pre-filled SMS link
-        const smsBody = encodeURIComponent(`Hi Keith, this is ${name || 'a student'}. I just submitted an intake form for ${course || 'physics'} tutoring.`);
+        const smsBody = encodeURIComponent(`Hi Keith, this is ${name || 'a student'}. I just submitted an intake form for ${campusName} ${course} tutoring (${format}).`);
         directTextLink.href = `sms:2135328781?body=${smsBody}`;
 
         successCard.style.display = 'block';
@@ -681,6 +946,16 @@
       successCard.style.display = 'none';
       intakeForm.style.display = 'flex';
     });
+
+    // Mobile action bar smooth scroll
+    const mobileRequestBtn = document.getElementById('mobileRequestBtn');
+    if (mobileRequestBtn) {
+      mobileRequestBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        intakeForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('name').focus();
+      });
+    }
   </script>
 </body>
 </html>

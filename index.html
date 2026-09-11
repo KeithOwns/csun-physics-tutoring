@@ -447,6 +447,32 @@
       body { padding: 24px 12px 84px 12px; }
       .mobile-action-bar { display: block; }
     }
+
+    /* Desktop toast notice when copying number */
+    .toast-notice {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 22px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      z-index: 9999;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .toast-notice.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -604,7 +630,7 @@
       </div>
 
       <div class="direct-contact">
-        Prefer direct text? Reach Keith directly at <a href="tel:2135328781">213-532-8781</a>.
+        Prefer to text? <a href="sms:2135328781" class="text-link">💬 Text Keith at (213) 532-8781</a> &bull; <a href="tel:2135328781">📞 Call (213) 532-8781</a>
       </div>
     </div>
   </div>
@@ -612,7 +638,7 @@
   <!-- Sticky Mobile Quick-Action Bar -->
   <div class="mobile-action-bar">
     <div class="mobile-action-inner">
-      <a id="mobileTextBtn" href="sms:2135328781?body=Hi%20Keith%2C%20I'm%20looking%20for%20physics%20tutoring%20help." class="mobile-btn-text">
+      <a id="mobileTextBtn" href="sms:2135328781" class="mobile-btn-text">
         💬 Text Keith
       </a>
       <a href="#tutoringIntakeForm" class="mobile-btn-primary" id="mobileRequestBtn">
@@ -929,9 +955,8 @@
           successMessageText.innerHTML = `Thanks, <strong style="color: #0f172a;">${safeName}</strong>! Keith will email you shortly at <strong style="color: #0f172a;">${safeEmail}</strong> to coordinate your ${safeFormat} session for ${safeCampus} (${safeCourse}).`;
         }
         
-        // Prepare pre-filled SMS link
-        const smsBody = encodeURIComponent(`Hi Keith, this is ${name || 'a student'}. I just submitted an intake form for ${campusName} ${course} tutoring (${format}).`);
-        directTextLink.href = `sms:2135328781?body=${smsBody}`;
+        // Universal clean SMS link for iOS & Android
+        directTextLink.href = 'sms:2135328781';
 
         successCard.style.display = 'block';
         successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -956,6 +981,35 @@
         document.getElementById('name').focus();
       });
     }
+
+    function showToast(msg) {
+      let toast = document.getElementById('toastNotice');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toastNotice';
+        toast.className = 'toast-notice';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    // On desktop browsers where sms: links might not trigger an SMS client, copy number as clipboard fallback
+    document.querySelectorAll('a[href^="sms:"]').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (!isMobile) {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText('213-532-8781').then(() => {
+              showToast('📱 Copied (213) 532-8781 to clipboard!');
+            }).catch(() => {});
+          }
+        }
+      });
+    });
   </script>
 </body>
 </html>

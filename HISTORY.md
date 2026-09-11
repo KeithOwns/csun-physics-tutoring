@@ -30,6 +30,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Updated flyer collateral (`flyer.html` and `CSUN_PHYS_100_Tutoring_Flyer_Keith-v3.pdf`) to feature `JarHeadTutor.com` in contact banner, QR code, and tear-off tabs.
 
 ### Fixed
+- Fixed SMS text functionality across `index.html` by replacing erroneous `tel:` URL in direct contact footer with `sms:2135328781`.
+- Removed `?body=` URL parameter from `sms:` links that broke native Messages app launch on iOS devices.
+- Added desktop clipboard fallback toast copying `(213) 532-8781` whenever SMS links are clicked on non-mobile devices.
 - Provisioned SSL certificate and enabled HTTPS enforcement for custom domains `jarheadtutor.com` and `www.jarheadtutor.com`.
 - Fixed missing vertical dashed cut-line between the last two tear-off tabs on flyer collateral (`flyer.html` and compiled PDFs).
 

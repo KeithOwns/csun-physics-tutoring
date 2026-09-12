@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- Added mobile browser theme-color and status bar meta styling to `index.html` seamlessly matching the dark slate theme.
+- Added inline SVG atom favicon (`⚛️`) to `index.html`, eliminating 404 favicon requests and establishing visual tab/bookmark branding.
+- Added OpenGraph and Twitter Card social sharing meta tags to `index.html` for rich visual preview cards when sharing links via SMS, iMessage, WhatsApp, and social platforms.
 - Added dynamic multi-campus targeting to `index.html` supporting CSUN, Pierce College, LA Valley College, LA Mission College, College of the Canyons, UCLA, and Moorpark College.
 - Added URL query parameter detection (`?school=pierce`, `?school=ucla`, `?school=lavc`, etc.) to automatically customize page header, courses, and instructor options.
 - Added sticky mobile quick-action bar with one-tap SMS text and smooth-scroll session booking.

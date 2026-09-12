@@ -30,6 +30,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Updated flyer collateral (`flyer.html` and `CSUN_PHYS_100_Tutoring_Flyer_Keith-v3.pdf`) to feature `JarHeadTutor.com` in contact banner, QR code, and tear-off tabs.
 
 ### Fixed
+- Converted Google Fonts stylesheet in `index.html` to asynchronous preloaded loading with immediate system font fallback, eliminating render-blocking blank white screen hangs on congested or restricted mobile/Wi-Fi networks.
+- Expanded `DNS_SETUP.md` with complete GitHub Pages dual-stack DNS configuration, adding four IPv6 `AAAA` records and verifying all four IPv4 `A` records for apex domain resilience.
 - Fixed SMS text functionality across `index.html` by replacing erroneous `tel:` URL in direct contact footer with `sms:2135328781`.
 - Removed `?body=` URL parameter from `sms:` links that broke native Messages app launch on iOS devices.
 - Added desktop clipboard fallback toast copying `(213) 532-8781` whenever SMS links are clicked on non-mobile devices.

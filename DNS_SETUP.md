@@ -13,8 +13,8 @@ This points `www.jarheadtutor.com` to GitHub Pages:
 
 ---
 
-### Record 2: A Records for Apex `jarheadtutor.com` (Recommended)
-These point root `jarheadtutor.com` (without `www`) to GitHub's CDN IP addresses:
+### Record 2: A Records for Apex `jarheadtutor.com` (Required for Root Domain)
+These point root `jarheadtutor.com` (without `www`) to GitHub's CDN IPv4 addresses:
 - **Record A**:
   - **Type**: `A`
   - **Host / Name**: `@` (or leave blank / root)
@@ -32,12 +32,50 @@ These point root `jarheadtutor.com` (without `www`) to GitHub's CDN IP addresses
   - **Host / Name**: `@`
   - **Value / IP**: `185.199.111.153`
 
-*(Alternatively, if your registrar provides a "Domain Forwarding" feature, you can simply forward `jarheadtutor.com` to `https://www.jarheadtutor.com` with 301 Permanent Redirect).*
+---
+
+### Record 3: AAAA Records for Apex `jarheadtutor.com` (Required for IPv6 & Mobile Networks)
+Modern mobile carriers (T-Mobile, AT&T, Verizon) and many home Wi-Fi networks route IPv6 natively. These point root `jarheadtutor.com` to GitHub's CDN IPv6 addresses:
+- **Record AAAA 1**:
+  - **Type**: `AAAA`
+  - **Host / Name**: `@`
+  - **Value / IP**: `2606:50c0:8000::153`
+- **Record AAAA 2**:
+  - **Type**: `AAAA`
+  - **Host / Name**: `@`
+  - **Value / IP**: `2606:50c0:8001::153`
+- **Record AAAA 3**:
+  - **Type**: `AAAA`
+  - **Host / Name**: `@`
+  - **Value / IP**: `2606:50c0:8002::153`
+- **Record AAAA 4**:
+  - **Type**: `AAAA`
+  - **Host / Name**: `@`
+  - **Value / IP**: `2606:50c0:8003::153`
+
+---
+
+### GoDaddy Setup Checklist
+
+Log into [GoDaddy DNS Management](https://dcc.godaddy.com/manage/dns) for `jarheadtutor.com`:
+
+1. **CNAME**:
+   - `www` &rarr; `keithowns.github.io`
+2. **A Records** (Ensure all 4 exist under `@`):
+   - `185.199.108.153`
+   - `185.199.109.153`
+   - `185.199.110.153`
+   - `185.199.111.153`
+3. **AAAA Records** (Add all 4 under `@`):
+   - `2606:50c0:8000::153`
+   - `2606:50c0:8001::153`
+   - `2606:50c0:8002::153`
+   - `2606:50c0:8003::153`
 
 ---
 
 ### Automatic SSL / HTTPS Verification
 
 1. Once you save the DNS records, DNS propagation typically takes between 5 to 30 minutes.
-2. GitHub automatically requests a free, auto-renewing **Let's Encrypt SSL certificate** for `www.jarheadtutor.com`.
+2. GitHub automatically requests a free, auto-renewing **Let's Encrypt SSL certificate** for `www.jarheadtutor.com` and `jarheadtutor.com`.
 3. In **GitHub Repository Settings > Pages**, ensure **Enforce HTTPS** is checked once the certificate finishes provisioning.

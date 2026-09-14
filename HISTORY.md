@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- Added 3-button sticky action bar (Text, Call, Book) locked to mobile viewports for frictionless one-thumb contact.
+- Added Trust & Clarity reassurance strip highlighting Marine Veteran background, rapid 15–30 min response time, and 100% clarity guarantee.
 - Added direct email contact buttons to urgent contact banner and dynamically generated pre-filled `mailto:` draft button in intake submission confirmation.
 - Added prominent high-conversion urgent direct-contact banner to `index.html` with one-tap SMS text and call buttons for immediate student reach.
 - Connected zero-setup FormSubmit endpoint to intake form in `index.html` sending lead details directly to Keith's email address upon submission.

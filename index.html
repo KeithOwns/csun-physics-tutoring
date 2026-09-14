@@ -433,9 +433,9 @@
 
     .mobile-action-inner a {
       flex: 1;
-      padding: 12px 14px;
+      padding: 12px 6px;
       border-radius: 8px;
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       font-weight: 700;
       text-align: center;
       text-decoration: none;
@@ -443,8 +443,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
       transition: all 0.15s ease;
+      white-space: nowrap;
     }
 
     .mobile-btn-text {
@@ -453,10 +454,55 @@
       border: 1px solid #bfdbfe !important;
     }
 
+    .mobile-btn-call {
+      background: #1e293b;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+
     .mobile-btn-primary {
       background: var(--primary);
       color: #ffffff;
       box-shadow: 0 2px 8px rgba(209, 18, 66, 0.4);
+    }
+
+    /* Trust & Guarantee Strip */
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 18px 0 22px 0;
+      padding: 14px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .trust-icon {
+      font-size: 1.35rem;
+      flex-shrink: 0;
+      line-height: 1.2;
+    }
+
+    .trust-item strong {
+      display: block;
+      font-size: 0.85rem;
+      color: #0f172a;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .trust-item p {
+      font-size: 0.78rem;
+      color: #64748b;
+      line-height: 1.35;
+      margin: 0;
     }
 
     /* Urgent direct-contact banner */
@@ -545,6 +591,7 @@
     @media (max-width: 600px) {
       .value-props { grid-template-columns: 1fr; }
       .row { grid-template-columns: 1fr; }
+      .trust-strip { grid-template-columns: 1fr; gap: 12px; }
       .card { padding: 24px 18px; }
       .header-hero h1 { font-size: 1.75rem; }
       body { padding: 24px 12px 84px 12px; }
@@ -604,6 +651,31 @@
         <div class="prop-item">
           <span class="prop-icon">✓</span>
           <span>Individual or 2–3 person group options</span>
+        </div>
+      </div>
+
+      <!-- Trust & Clarity Reassurance Strip -->
+      <div class="trust-strip">
+        <div class="trust-item">
+          <span class="trust-icon">🎖️</span>
+          <div>
+            <strong>Marine Veteran Discipline</strong>
+            <p>Punctual, focused, and patient. No ego or talking down—just direct, step-by-step problem-solving.</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">⚡</span>
+          <div>
+            <strong>Fast 15–30 Min Reply</strong>
+            <p>Keith replies quickly to texts. Urgent upcoming exam &amp; homework help always welcomed.</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">🛡️</span>
+          <div>
+            <strong>100% Clarity Guarantee</strong>
+            <p>If your first session doesn't bring immediate clarity to your physics coursework, you owe nothing.</p>
+          </div>
         </div>
       </div>
 
@@ -765,10 +837,13 @@
   <div class="mobile-action-bar">
     <div class="mobile-action-inner">
       <a id="mobileTextBtn" href="sms:2135328781?body=Hi%20Keith%2C%20I'm%20looking%20for%20physics%20tutoring%20help." class="mobile-btn-text">
-        💬 Text Keith
+        💬 Text
+      </a>
+      <a href="tel:2135328781" class="mobile-btn-call">
+        📞 Call
       </a>
       <a href="#tutoringIntakeForm" class="mobile-btn-primary" id="mobileRequestBtn">
-        📝 Book Session
+        📝 Book
       </a>
     </div>
   </div>

@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- Compiled print-ready 8.5" x 11" PDF flyer v7 (`CSUN_PHYS_100_Tutoring_Flyer_Keith-v7.pdf`) with `JarHeadTutor.com` apex domain, dynamic QR code, and tear-off contact tabs.
 - Added 3-button sticky action bar (Text, Call, Book) locked to mobile viewports for frictionless one-thumb contact.
 - Added Trust & Clarity reassurance strip highlighting Marine Veteran background, rapid 15–30 min response time, and 100% clarity guarantee.
 - Added direct email contact buttons to urgent contact banner and dynamically generated pre-filled `mailto:` draft button in intake submission confirmation.

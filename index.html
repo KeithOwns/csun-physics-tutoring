@@ -459,6 +459,78 @@
       box-shadow: 0 2px 8px rgba(209, 18, 66, 0.4);
     }
 
+    /* Urgent direct-contact banner */
+    .urgent-contact-box {
+      background: linear-gradient(135deg, rgba(209, 18, 66, 0.06) 0%, rgba(255, 255, 255, 0.98) 100%);
+      border: 1.5px solid rgba(209, 18, 66, 0.28);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 24px;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(209, 18, 66, 0.08);
+    }
+
+    .urgent-badge {
+      display: inline-block;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      margin-bottom: 8px;
+    }
+
+    .urgent-text {
+      font-size: 0.95rem;
+      color: #0f172a;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .urgent-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .urgent-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .urgent-btn-sms {
+      background: #1d4ed8;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(29, 78, 216, 0.25);
+    }
+
+    .urgent-btn-sms:hover {
+      background: #1e40af;
+      color: #ffffff;
+    }
+
+    .urgent-btn-call {
+      background: #0f172a;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.25);
+    }
+
+    .urgent-btn-call:hover {
+      background: #1e293b;
+      color: #ffffff;
+    }
+
     @media (max-width: 600px) {
       .value-props { grid-template-columns: 1fr; }
       .row { grid-template-columns: 1fr; }
@@ -524,8 +596,25 @@
         </div>
       </div>
 
-      <!-- Formspree or Google Apps Script Webhook endpoint -->
-      <form id="tutoringIntakeForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <!-- Direct Urgent Contact Bar for Fast Booking -->
+      <div class="urgent-contact-box">
+        <div class="urgent-badge">⚡ Need Help Right Away?</div>
+        <div class="urgent-text">Stuck on homework or exam coming up? Contact Keith directly for fastest response:</div>
+        <div class="urgent-actions">
+          <a href="sms:2135328781?body=Hi%20Keith%2C%20I'm%20looking%20for%20physics%20tutoring%20help." class="urgent-btn urgent-btn-sms">
+            💬 Text (213) 532-8781
+          </a>
+          <a href="tel:2135328781" class="urgent-btn urgent-btn-call">
+            📞 Call (213) 532-8781
+          </a>
+        </div>
+      </div>
+
+      <!-- Instant Delivery Endpoint via FormSubmit -->
+      <form id="tutoringIntakeForm" action="https://formsubmit.co/ajax/keith.tibbitts@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="⚡ New Physics Tutoring Lead - JarHeadTutor.com" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
         <div class="form-group">
           <label for="name">Your Name *</label>
           <input type="text" id="name" name="name" placeholder="First & Last Name" required />
@@ -1002,7 +1091,7 @@
       phoneInput.classList.remove('input-error');
       emailInput.classList.remove('input-error');
       successCard.style.display = 'none';
-      intakeForm.style.display = 'flex';
+      intakeForm.style.display = 'block';
     });
 
     // Mobile action bar smooth scroll
@@ -1028,6 +1117,13 @@
       setTimeout(() => {
         toast.classList.remove('show');
       }, 3500);
+    }
+
+    // Adjust static sms: links for iOS query string delimiter
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+      document.querySelectorAll('a[href^="sms:"]').forEach(link => {
+        link.href = link.href.replace('?body=', '&body=');
+      });
     }
 
     // On desktop browsers where sms: links might not trigger an SMS client, copy number as clipboard fallback

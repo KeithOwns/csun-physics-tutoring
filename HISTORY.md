@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- Added prominent high-conversion urgent direct-contact banner to `index.html` with one-tap SMS text and call buttons for immediate student reach.
+- Connected zero-setup FormSubmit endpoint to intake form in `index.html` sending lead details directly to Keith's email address upon submission.
 - Added mobile browser theme-color and status bar meta styling to `index.html` seamlessly matching the dark slate theme.
 - Added inline SVG atom favicon (`⚛️`) to `index.html`, eliminating 404 favicon requests and establishing visual tab/bookmark branding.
 - Added OpenGraph and Twitter Card social sharing meta tags to `index.html` for rich visual preview cards when sharing links via SMS, iMessage, WhatsApp, and social platforms.
@@ -33,6 +35,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Updated flyer collateral (`flyer.html` and `CSUN_PHYS_100_Tutoring_Flyer_Keith-v3.pdf`) to feature `JarHeadTutor.com` in contact banner, QR code, and tear-off tabs.
 
 ### Fixed
+- Fixed silent form submission drop-off by replacing dummy endpoint with FormSubmit direct email delivery to Keith, ensuring leads are captured on desktop and mobile.
+- Fixed form reset display state and enabled automatic iOS URL query delimiter adjustment for all static SMS links.
 - Restored dynamic pre-filled SMS text message body on intake form submission with cross-platform iOS and Android delimiter support, and added automatic Messages app launch on mobile devices.
 - Fixed undefined `body` variable reference in `google-apps-script.js` and `SETUP_LEADS_WEBHOOK.md` lead notification formatting.
 - Converted Google Fonts stylesheet in `index.html` to asynchronous preloaded loading with immediate system font fallback, eliminating render-blocking blank white screen hangs on congested or restricted mobile/Wi-Fi networks.

@@ -15,7 +15,7 @@
 
   <!-- OpenGraph & Social Share Cards -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.jarheadtutor.com/" />
+  <meta property="og:url" content="https://jarheadtutor.com/" />
   <meta property="og:title" content="College Physics Tutoring | CSUN, Pierce, Valley &amp; Online" />
   <meta property="og:description" content="Calculus-free, step-by-step coaching for CSUN, Pierce, LAVC, and UCLA physics students. WebAssign homework help, exam prep, and live Zoom coaching." />
   <meta name="twitter:card" content="summary" />
@@ -531,6 +531,17 @@
       color: #ffffff;
     }
 
+    .urgent-btn-email {
+      background: #047857;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(4, 120, 87, 0.25);
+    }
+
+    .urgent-btn-email:hover {
+      background: #065f46;
+      color: #ffffff;
+    }
+
     @media (max-width: 600px) {
       .value-props { grid-template-columns: 1fr; }
       .row { grid-template-columns: 1fr; }
@@ -606,6 +617,9 @@
           </a>
           <a href="tel:2135328781" class="urgent-btn urgent-btn-call">
             📞 Call (213) 532-8781
+          </a>
+          <a href="mailto:keith.tibbitts@gmail.com?subject=Physics%20Tutoring%20Inquiry" class="urgent-btn urgent-btn-email">
+            ✉️ Email Keith
           </a>
         </div>
       </div>
@@ -732,6 +746,9 @@
           <a href="tel:2135328781" class="chip-btn">
             📞 Call (213) 532-8781
           </a>
+          <a id="directEmailLink" href="mailto:keith.tibbitts@gmail.com?subject=Physics%20Tutoring%20Request" class="chip-btn">
+            ✉️ Email Keith
+          </a>
         </div>
         <div>
           <button type="button" id="resetBtn" class="btn-reset">Submit Another Request</button>
@@ -739,7 +756,7 @@
       </div>
 
       <div class="direct-contact">
-        Prefer to text? <a href="sms:2135328781" class="text-link">💬 Text Keith at (213) 532-8781</a> &bull; <a href="tel:2135328781">📞 Call (213) 532-8781</a>
+        Prefer to text or call? <a href="sms:2135328781" class="text-link">💬 Text Keith at (213) 532-8781</a> &bull; <a href="tel:2135328781">📞 Call (213) 532-8781</a> &bull; <a href="mailto:keith.tibbitts@gmail.com">✉️ Email Keith</a>
       </div>
     </div>
   </div>
@@ -1071,6 +1088,14 @@
         const smsUrl = `sms:2135328781${delimiter}body=${encodeURIComponent(smsMsg)}`;
         
         directTextLink.href = smsUrl;
+
+        // Build dynamic pre-filled Email link for desktop/email clients
+        const directEmailLink = document.getElementById('directEmailLink');
+        if (directEmailLink) {
+          const emailSubject = encodeURIComponent(`Physics Tutoring Request: ${name || 'Student'} (${campusName} ${course})`);
+          const emailBody = encodeURIComponent(`Hi Keith,\n\nI just submitted an intake form on JarHeadTutor.com:\n\nStudent: ${name}\nPhone: ${phone}\nEmail: ${email}\nCampus: ${campusName}\nCourse: ${course}\nFormat: ${format}\nProfessor: ${professor}\nFocus: ${focus}\nNotes: ${notes}\n`);
+          directEmailLink.href = `mailto:keith.tibbitts@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+        }
 
         successCard.style.display = 'block';
         successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });

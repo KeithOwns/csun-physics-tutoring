@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- Added direct email contact buttons to urgent contact banner and dynamically generated pre-filled `mailto:` draft button in intake submission confirmation.
 - Added prominent high-conversion urgent direct-contact banner to `index.html` with one-tap SMS text and call buttons for immediate student reach.
 - Connected zero-setup FormSubmit endpoint to intake form in `index.html` sending lead details directly to Keith's email address upon submission.
 - Added mobile browser theme-color and status bar meta styling to `index.html` seamlessly matching the dark slate theme.
@@ -24,6 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added client-side phone number formatting, form validation, anti-spam honeypot, and local storage submission backup.
 
 ### Changed
+- Set canonical custom domain to apex `jarheadtutor.com` in `CNAME` and updated flyer QR code destination, bypassing IPv6 CNAME lookups on local Wi-Fi networks.
 - Expanded Google Apps Script webhook logging and instant email alerts (`google-apps-script.js` and `SETUP_LEADS_WEBHOOK.md`) to capture Campus and Session Format across 10 spreadsheet columns.
 - Broadened website title and meta descriptions for multi-campus and online physics coaching reach across the San Fernando Valley and Los Angeles.
 - Updated intake form contact section on `index.html` to allow prospective students to enter cell, email, or both, with helper text and validation requiring at least one contact method.

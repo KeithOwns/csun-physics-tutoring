@@ -658,7 +658,7 @@
   <!-- Sticky Mobile Quick-Action Bar -->
   <div class="mobile-action-bar">
     <div class="mobile-action-inner">
-      <a id="mobileTextBtn" href="sms:2135328781" class="mobile-btn-text">
+      <a id="mobileTextBtn" href="sms:2135328781?body=Hi%20Keith%2C%20I'm%20looking%20for%20physics%20tutoring%20help." class="mobile-btn-text">
         💬 Text Keith
       </a>
       <a href="#tutoringIntakeForm" class="mobile-btn-primary" id="mobileRequestBtn">
@@ -975,11 +975,24 @@
           successMessageText.innerHTML = `Thanks, <strong style="color: #0f172a;">${safeName}</strong>! Keith will email you shortly at <strong style="color: #0f172a;">${safeEmail}</strong> to coordinate your ${safeFormat} session for ${safeCampus} (${safeCourse}).`;
         }
         
-        // Universal clean SMS link for iOS & Android
-        directTextLink.href = 'sms:2135328781';
+        // Build cross-platform pre-filled SMS URL
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const delimiter = isIOS ? '&' : '?';
+        const smsMsg = `Hi Keith, this is ${name || 'a student'}. I just submitted an intake form for ${campusName} ${course} tutoring (${format}).`;
+        const smsUrl = `sms:2135328781${delimiter}body=${encodeURIComponent(smsMsg)}`;
+        
+        directTextLink.href = smsUrl;
 
         successCard.style.display = 'block';
         successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Auto-launch SMS app on mobile devices so user can immediately send the text
+        const isMobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (isMobileDevice) {
+          setTimeout(() => {
+            window.location.href = smsUrl;
+          }, 350);
+        }
       }, 450);
     });
 

@@ -33,6 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Updated flyer collateral (`flyer.html` and `CSUN_PHYS_100_Tutoring_Flyer_Keith-v3.pdf`) to feature `JarHeadTutor.com` in contact banner, QR code, and tear-off tabs.
 
 ### Fixed
+- Restored dynamic pre-filled SMS text message body on intake form submission with cross-platform iOS and Android delimiter support, and added automatic Messages app launch on mobile devices.
 - Fixed undefined `body` variable reference in `google-apps-script.js` and `SETUP_LEADS_WEBHOOK.md` lead notification formatting.
 - Converted Google Fonts stylesheet in `index.html` to asynchronous preloaded loading with immediate system font fallback, eliminating render-blocking blank white screen hangs on congested or restricted mobile/Wi-Fi networks.
 - Expanded `DNS_SETUP.md` with complete GitHub Pages dual-stack DNS configuration, adding four IPv6 `AAAA` records and verifying all four IPv4 `A` records for apex domain resilience.

@@ -56,7 +56,7 @@ function doPost(e) {
     var quickActions = "Quick Actions:\n";
 
     if (phone && phone !== "N/A") {
-      body += "• Call: " + phone + "\n• Text: " + phone + "\n";
+      quickActions += "• Call: " + phone + "\n• Text: " + phone + "\n";
     }
     if (email && email !== "N/A") {
       quickActions += "• Email: " + email + "\n";
